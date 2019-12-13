@@ -1,5 +1,19 @@
 'use strict';
 let currentSize = 25;//default grid
+
+let isDrawing = false;
+
+window.addEventListener("mousedown", e => {
+    if (e) {
+        isDrawing = true;
+    }
+});
+window.addEventListener("mouseup", e => {
+    if (e) {
+        isDrawing = false;
+    }
+});
+
 createGrid(currentSize);
 
 addGridListeners();
@@ -9,6 +23,8 @@ clearButton.addEventListener('click', clearScreen);
 
 const resizeButton = document.querySelector(".control#right");
 resizeButton.addEventListener('click', resize);
+
+
 
 function createGrid(xSize) {
     const screenDiv = document.querySelector(".screen");
@@ -45,30 +61,11 @@ function createGrid(xSize) {
 }
 
 function addGridListeners() {
-    let isDrawing = false;
     const gridItems = document.querySelectorAll('.grid-item');
     gridItems.forEach((item) => {
-        item.addEventListener('mousedown', (e) => {
-            e.currentTarget.classList.add("clicked");
-            isDrawing = true;
-        }
-        );
-    });
-
-    gridItems.forEach((item) => {
-        item.addEventListener('mousemove', (e) => {
+        item.addEventListener('mouseenter', (e) => {
             if (isDrawing) {
                 e.currentTarget.classList.add("clicked");
-            }
-        }
-        );
-    });
-
-    gridItems.forEach((item) => {
-        item.addEventListener('mouseup', (e) => {
-            if (isDrawing) {
-                e.currentTarget.classList.add("clicked");
-                isDrawing = false;
             }
         }
         );

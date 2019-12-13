@@ -101,6 +101,7 @@ footer {
 
       .grid-item:hover{
         background-color: rgba(255, 255, 0, 0.527);
+
         cursor: pointer;
       }
 
